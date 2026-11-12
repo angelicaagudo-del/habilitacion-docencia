@@ -32,9 +32,14 @@ main{max-width:900px;margin:auto;padding:16px}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .tabs button{border:0;background:#e0e7ff;color:#1e40af;padding:9px 12px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
 .tabs button.active{background:#2563eb;color:white}
+.subtabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.subtabs button{border:0;background:#ffedd5;color:#9a3412;padding:8px 12px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
+.subtabs button.active{background:#ea580c;color:white}
 .panel{display:none;background:#f8fafc;border-radius:12px;padding:14px;font-size:14px;line-height:1.5}
 .panel.active{display:block}
-.panel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
+.subpanel{display:none;background:white;border-radius:12px;padding:12px;margin-top:8px;border:1px solid #eee}
+.subpanel.active{display:block}
+.panel a, .subpanel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
 .icono-grande{font-size:36px}
 footer{text-align:center;padding:20px;color:#888;font-size:13px}
 </style>
@@ -53,6 +58,12 @@ const PRES_MP1706_UA1 = "UA1-Presentacion.pdf";
 const ANEXO1_UA1 = "UA1-Anexo1.pdf";
 const ANEXO2_UA1 = "UA1-Anexo2.pdf";
 const MANUAL_MP1706_UA2 = "UA2-Manual.pdf";
+const FICHA_S1_1 = "UA1-S1-Ficha1.docx";
+const FICHA_S1_2 = "UA1-S1-Ficha2.docx";
+const FICHA_S2_1 = "UA1-S2-Ficha1.docx";
+const FICHA_S2_2 = "UA1-S2-Ficha2.docx";
+const FICHA_S3_1 = "UA1-S3-Ficha1.docx";
+const FICHA_S3_2 = "UA1-S3-Ficha2.docx";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
 {codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", color:"c1", desc:"📝 Aprende a programar tus clases - 5 unidades", uas:[
@@ -126,7 +137,15 @@ function pintarModulo(){
     if(m.codigo==="MP1706" && idx===0){
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 1</b><br>Todo el material de la Unidad 1 está aquí, en Manual.<br><br><a href="${MANUAL_MP1706_UA1}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br><a href="${ANEXO1_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 1</a><br><br><a href="${ANEXO2_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 2</a><br><br>Si no se abre, dale a descargar.`;
       presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 1</b><br><br><a href="${PRES_MP1706_UA1}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación</a><br><br>Si no se abre, dale a descargar.`;
-      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 1</b><br>En esta unidad no hay fichas sueltas.<br>Todo está en la pestaña de <b>📘 Manual</b>: manual + Anexo 1 + Anexo 2.`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 1 - 3 sesiones - Editables en Word</b><br>Pincha en cada sesión para ver sus fichas. Al pinchar se descarga el Word para rellenarlo 👇
+        <div class="subtabs">
+          <button class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
+          <button onclick="mostrarSesion(event,'${id}','s2')">📄 Sesión 2</button>
+          <button onclick="mostrarSesion(event,'${id}','s3')">📄 Sesión 3</button>
+        </div>
+        <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br>✏️ Fichas editables en Word. Se descargan al pinchar.<br><br><a href="${FICHA_S1_1}" download>📝 ➡️ FICHA 1: Análisis y Clasificación de Recursos Didácticos</a><br><br><a href="${FICHA_S1_2}" download>📝 ➡️ FICHA 2: Auditoría y Propuesta de Adaptación de Recursos</a></div>
+        <div class="subpanel" id="${id}-s2"><b>📄 Sesión 2</b><br>✏️ Fichas editables en Word. Se descargan al pinchar.<br><br><a href="${FICHA_S2_1}" download>📝 ➡️ FICHA 1: Análisis de Materiales y Patrón de Control</a><br><br><a href="${FICHA_S2_2}" download>📝 ➡️ FICHA 2: Informe de Auditoría del Documento Manipulado</a></div>
+        <div class="subpanel" id="${id}-s3"><b>📄 Sesión 3</b><br>✏️ Fichas editables en Word. Se descargan al pinchar.<br><br><a href="${FICHA_S3_1}" download>📝 ➡️ FICHA 1: Reto de Hibridación y Transformación Digital</a><br><br><a href="${FICHA_S3_2}" download>📝 ➡️ FICHA 2: Resolución de Casos Prácticos (Ética, Propiedad Intelectual y Accesibilidad)</a></div>`;
     } else if(m.codigo==="MP1706" && idx===1){
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 2 - Ya subido</b><br><br><a href="${MANUAL_MP1706_UA2}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Si no se abre, dale a descargar.`;
       presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.`;
@@ -134,7 +153,7 @@ function pintarModulo(){
     } else {
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.`;
       presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.`;
-      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: 📄 Ficha ${idx+1} - Sesión ${idx+1}.pdf`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: 📄 Ficha ${idx+1} - Sesión ${idx+1}.docx`;
     }
     html += `<div class="ua" onclick="document.getElementById('body-${id}').classList.toggle('open')">
       <div class="ua-icono">${icono}</div>
@@ -167,6 +186,16 @@ function mostrarPanel(e, id, cual){
   botones.forEach(b=>b.classList.remove("active"));
   e.target.classList.add("active");
   ["fichas","manual","presentacion","entregar","corregidas"].forEach(k=>{
+    document.getElementById(id+"-"+k).classList.remove("active");
+  });
+  document.getElementById(id+"-"+cual).classList.add("active");
+}
+function mostrarSesion(e, id, cual){
+  e.stopPropagation();
+  let botones = e.target.parentElement.querySelectorAll("button");
+  botones.forEach(b=>b.classList.remove("active"));
+  e.target.classList.add("active");
+  ["s1","s2","s3"].forEach(k=>{
     document.getElementById(id+"-"+k).classList.remove("active");
   });
   document.getElementById(id+"-"+cual).classList.add("active");
