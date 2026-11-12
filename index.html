@@ -42,9 +42,30 @@ main{max-width:900px;margin:auto;padding:16px}
 .panel a, .subpanel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
 .icono-grande{font-size:36px}
 footer{text-align:center;padding:20px;color:#888;font-size:13px}
+/* PANTALLA DE CÓDIGO */
+#pantalla-codigo{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#1e40af,#2563eb);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+#caja-codigo{background:white;border-radius:20px;padding:28px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+#caja-codigo h2{color:#1e40af;margin:0 0 8px;font-size:22px}
+#caja-codigo p{color:#666;font-size:14px;margin:0 0 16px;line-height:1.5}
+#caja-codigo input{width:100%;padding:14px;border:2px solid #dbeafe;border-radius:12px;font-size:18px;text-align:center;font-weight:bold;letter-spacing:1px;margin-bottom:12px;outline:none}
+#caja-codigo input:focus{border-color:#2563eb}
+#caja-codigo button{width:100%;background:#2563eb;color:white;border:0;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer}
+#mensaje-error{color:#dc2626;font-weight:bold;font-size:14px;margin-top:10px;display:none}
 </style>
 </head>
 <body>
+<div id="pantalla-codigo">
+  <div id="caja-codigo">
+    <div style="font-size:50px">🔒🎓</div>
+    <h2>SSC_C_017_5B</h2>
+    <p>👩‍🏫 Habilitación para la Docencia<br>Escribe el código de acceso para entrar</p>
+    <input type="text" id="input-codigo" placeholder="Escribe el código" autocomplete="off">
+    <button onclick="comprobarCodigo()">➡️ Entrar</button>
+    <div id="mensaje-error">❌ Código incorrecto, inténtalo otra vez</div>
+    <p style="font-size:12px;color:#999;margin-top:16px">Si no tienes el código, pídeselo a tu profesora Angélica</p>
+  </div>
+</div>
+
 <header>
 <h1>🎓 SSC_C_017_5B - Habilitación para la Docencia</h1>
 <p>📚 Grados A, B y C - 510 h - 👩‍🏫 Angélica Agudo Polo<br>👆 Pincha en un módulo para entrar</p>
@@ -52,6 +73,27 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <main id="contenido"></main>
 <footer>🎨 Página principal con dibujos y colores</footer>
 <script>
+// CÓDIGO DE ACCESO
+const CODIGO_CORRECTO = "SSC2026";
+function comprobarCodigo(){
+  const valor = document.getElementById("input-codigo").value.trim();
+  if(valor === CODIGO_CORRECTO){
+    document.getElementById("pantalla-codigo").style.display = "none";
+    sessionStorage.setItem("accesoSSC", "ok");
+    pintarInicio();
+  } else {
+    document.getElementById("mensaje-error").style.display = "block";
+    document.getElementById("input-codigo").value = "";
+    document.getElementById("input-codigo").focus();
+  }
+}
+document.getElementById("input-codigo").addEventListener("keypress", function(e){
+  if(e.key === "Enter"){ comprobarCodigo(); }
+});
+if(sessionStorage.getItem("accesoSSC") === "ok"){
+  document.getElementById("pantalla-codigo").style.display = "none";
+}
+
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
 const MANUAL_MP1706_UA1 = "UA1-Manual.pdf";
 const PRES_MP1706_UA1 = "UA1-Presentacion.pdf";
@@ -200,7 +242,9 @@ function mostrarSesion(e, id, cual){
   });
   document.getElementById(id+"-"+cual).classList.add("active");
 }
-pintarInicio();
+if(sessionStorage.getItem("accesoSSC") === "ok"){
+  pintarInicio();
+}
 </script>
 </body>
 </html>
