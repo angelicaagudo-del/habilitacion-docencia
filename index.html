@@ -8,18 +8,22 @@
 *{box-sizing:border-box}
 body{font-family:Arial,sans-serif;margin:0;background:#eef2ff;color:#222}
 header{background:linear-gradient(90deg,#1e40af,#2563eb,#3b82f6);color:white;padding:28px 16px;text-align:center}
-header a{color:#dbeafe;text-decoration:none;font-size:13px}
-header h1{margin:8px 0 4px;font-size:26px}
-header p{margin:0;color:#dbeafe;font-size:14px}
-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:white}
-nav button{border:1px solid #2563eb;background:white;color:#2563eb;padding:8px 14px;border-radius:20px;cursor:pointer;font-weight:bold}
-nav button.active{background:#2563eb;color:white}
+header h1{margin:0;font-size:26px}
+header p{margin:8px 0 0;color:#dbeafe;font-size:14px}
 main{max-width:900px;margin:auto;padding:16px}
+.boton-volver{display:inline-block;background:white;color:#2563eb;padding:10px 16px;border-radius:20px;font-weight:bold;text-decoration:none;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .modulo-titulo{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:8px solid #2563eb}
 .modulo-titulo h2{margin:0;color:#1e40af;font-size:20px}
 .modulo-titulo p{margin:6px 0 0;color:#666;font-size:14px}
+.tarjeta{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);cursor:pointer;display:flex;gap:14px;align-items:center}
+.tarjeta:hover{transform:scale(1.01)}
+.icono-principal{font-size:48px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:16px;flex-shrink:0}
+.c1{background:#dbeafe}.c2{background:#ffedd5}.c3{background:#dcfce7}.c4{background:#e9d5ff}.c5{background:#fef9c3}.c6{background:#fee2e2}.c7{background:#ccfbf1}.c8{background:#fce7f3}
+.tarjeta-texto{flex:1}
+.tarjeta h3{margin:0;color:#1e40af;font-size:18px}
+.tarjeta p{margin:6px 0 0;color:#666;font-size:14px}
 .ua{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);cursor:pointer;display:flex;gap:14px;align-items:flex-start}
-.ua-icono{font-size:42px;line-height:1}
+.ua-icono{font-size:38px}
 .ua-texto{flex:1}
 .ua h3{margin:0;color:#1e40af;font-size:17px}
 .ua p{margin:6px 0 12px;color:#666;font-size:14px}
@@ -37,37 +41,35 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 </head>
 <body>
 <header>
-<a href="#" onclick="volver()">⬅️ Volver a todos los módulos</a>
-<h1 id="tituloPrincipal">🎓 SSC_C_017_5B - Habilitación para la Docencia en Grados A, B y C</h1>
-<p id="subtituloPrincipal">📚 Repositorio del curso - 510 h - 👩‍🏫 Angélica Agudo Polo</p>
+<h1>🎓 SSC_C_017_5B - Habilitación para la Docencia</h1>
+<p>📚 Grados A, B y C - 510 h - 👩‍🏫 Angélica Agudo Polo<br>👆 Pincha en un módulo para entrar</p>
 </header>
-<nav id="menuModulos"></nav>
 <main id="contenido"></main>
-<footer>👆 Pincha en un módulo y luego en una unidad para ver sus 5 pestañas con dibujos.</footer>
+<footer>🎨 Página principal con dibujos y colores - Sin menú duplicado</footer>
 <script>
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
-{codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", uas:[
+{codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", color:"c1", desc:"📝 Aprende a programar tus clases - 5 unidades", uas:[
 ["El Sistema de Formación Profesional y su marco normativo","📜 Introducción al sistema y su normativa."],
 ["Organización curricular de los grados A, B y C","🗂️ Cómo se organizan los grados A, B y C."],
 ["Coordinación docente y organización de la acción formativa","🤝 Coordinación y organización de la formación."],
 ["Diseño de la programación didáctica","✍️ Cómo diseñar tu programación."],
 ["Temporalización y planificación de la acción formativa","🗓️ Temporalizar y planificar la formación."]]},
-{codigo:"MP1706", nombre:"Gestión de materiales, medios y recursos didácticos", icono:"🧰", uas:[
+{codigo:"MP1706", nombre:"Gestión de materiales, medios y recursos didácticos", icono:"🧰", color:"c2", desc:"✂️ Crea y elige tus materiales - 5 unidades", uas:[
 ["Introducción a los materiales didácticos","📦 Concepto, tipos y criterios de selección."],
 ["Elaboración y adaptación de materiales","✂️ Unidad que estás impartiendo ahora. Elaboración, adaptación y uso de medios."],
 ["Medios y recursos tecnológicos","💻 Recursos TIC, audiovisuales y digitales para el aula."],
 ["Utilización de materiales, medios técnicos y recursos audiovisuales","🎬 Uso práctico en el aula."],
 ["Evaluación de materiales, medios y recursos didácticos","✅ Cómo evaluar si el material funciona."]]},
-{codigo:"MP1707", nombre:"Orientación profesional", icono:"🧭", uas:[
+{codigo:"MP1707", nombre:"Orientación profesional", icono:"🧭", color:"c3", desc:"💼 Ayuda a buscar empleo - 6 unidades", uas:[
 ["El Sistema de Formación Profesional y las oportunidades de desarrollo profesional","🌱 Oportunidades del sistema."],
 ["El mercado laboral y las oportunidades de empleo","💼 Conoce el mercado laboral."],
 ["Herramientas para la búsqueda activa de empleo","🔍 Herramientas para buscar empleo."],
 ["Diseño del itinerario profesional y desarrollo de la empleabilidad","🛤️ Diseña tu itinerario."],
 ["Orientación profesional, igualdad e inclusión en el acceso al empleo","❤️ Igualdad e inclusión."],
 ["Sostenibilidad y retos ambientales y sociales en el entorno profesional","🌍 Sostenibilidad en lo profesional."]]},
-{codigo:"MP1783", nombre:"Evaluación del proceso de enseñanza-aprendizaje", icono:"📊", uas:[
+{codigo:"MP1783", nombre:"Evaluación del proceso de enseñanza-aprendizaje", icono:"📊", color:"c4", desc:"⭐ Cómo evaluar y calificar - 7 unidades", uas:[
 ["Normativa y características de la evaluación en los grados A, B y C","📏 Normativa de evaluación."],
 ["Planificación del proceso de evaluación","🗓️ Cómo planificar la evaluación."],
 ["Técnicas e instrumentos de evaluación","🧪 Técnicas e instrumentos."],
@@ -75,54 +77,41 @@ const MODULOS = [
 ["Evaluación y calificación de los aprendizajes","⭐ Evaluar y calificar."],
 ["Evaluación de la calidad del proceso de enseñanza-aprendizaje","🏆 Calidad del proceso."],
 ["Análisis de resultados y mejora del proceso de enseñanza-aprendizaje","📈 Mejora con los resultados."]]},
-{codigo:"MP1784", nombre:"Procesos para impartir acciones formativas", icono:"👩‍🏫", uas:[
+{codigo:"MP1784", nombre:"Procesos para impartir acciones formativas", icono:"👩‍🏫", color:"c5", desc:"💬 Cómo dar clase y comunicar - 6 unidades", uas:[
 ["Desarrollo de estrategias facilitadoras del proceso de aprendizaje","💡 Estrategias que facilitan aprender."],
 ["Cohesión y participación activa del alumnado","🤗 Cohesión y participación."],
 ["Técnicas de comunicación en las acciones formativas","💬 Comunicar en el aula."],
 ["Estrategias metodológicas para la impartición de acciones formativas","🎯 Metodologías para impartir."],
 ["Aspectos psicopedagógicos del aprendizaje","🧠 Cómo aprendemos."],
 ["Atención personalizada y seguimiento del aprendizaje","👀 Seguimiento personalizado."]]},
-{codigo:"MP1785", nombre:"Acción tutorial", icono:"🤝", uas:[
+{codigo:"MP1785", nombre:"Acción tutorial", icono:"🤝", color:"c6", desc:"❤️ Acompaña a tu alumnado - 6 unidades", uas:[
 ["Condiciones y requisitos iniciales de las acciones formativas","📋 Requisitos iniciales."],
 ["La función tutorial en el proceso de enseñanza-aprendizaje","🧑‍🏫 Qué es la tutoría."],
 ["Técnicas y herramientas de tutorización y seguimiento","🧰 Herramientas de tutoría."],
 ["Estrategias didácticas y comunicación para la participación","💬 Participación y comunicación."],
 ["Acción tutorial y formación dual en la empresa","🏢 Tutoría en la empresa."],
 ["Requisitos de superación, evaluación y valoración del progreso","✅ Superación y progreso."]]},
-{codigo:"MP1786", nombre:"Competencia digital para la práctica docente", icono:"💻", uas:[
+{codigo:"MP1786", nombre:"Competencia digital para la práctica docente", icono:"💻", color:"c7", desc:"🖥️ Tecnología para dar clase - 3 unidades", uas:[
 ["Comunicación, colaboración, búsqueda y gestión de información y contenidos digitales","🔎 Buscar y gestionar información digital."],
 ["Tecnologías digitales aplicadas a la enseñanza, el aprendizaje y la evaluación","🖥️ Tecnología en el aula y en la evaluación."],
 ["Accesibilidad, inclusión, alfabetización mediática, seguridad y bienestar digital","🔒 Accesibilidad y seguridad digital."]]},
-{codigo:"PRACTICAS", nombre:"Prácticas / Formación en Empresa", icono:"🏢", uas:[
+{codigo:"PRACTICAS", nombre:"Prácticas / Formación en Empresa", icono:"🏢", color:"c8", desc:"🏭 Prácticas en empresa - 2 unidades", uas:[
 ["Información general de prácticas","ℹ️ Información general."],
 ["Documentación y seguimiento","📂 Documentación y seguimiento."]]}
 ];
 let moduloActivo = -1;
-const menu = document.getElementById("menuModulos");
 const contenido = document.getElementById("contenido");
-function volver(){ moduloActivo = -1; pintarMenu(); pintarInicio(); document.getElementById("tituloPrincipal").textContent = "🎓 SSC_C_017_5B - Habilitación para la Docencia en Grados A, B y C"; document.getElementById("subtituloPrincipal").textContent = "📚 Repositorio del curso - 510 h - 👩‍🏫 Angélica Agudo Polo"; }
-function pintarMenu(){
-  menu.innerHTML = "";
-  MODULOS.forEach((m,i)=>{
-    let b = document.createElement("button");
-    b.textContent = m.icono + " " + m.codigo + " - " + m.nombre;
-    if(i===moduloActivo) b.className="active";
-    b.onclick = ()=>{moduloActivo=i; pintarMenu(); pintarModulo();};
-    menu.appendChild(b);
-  });
-}
 function pintarInicio(){
   let html = "";
   MODULOS.forEach((m,i)=>{
-    html += `<div class="ua" onclick="moduloActivo=${i};pintarMenu();pintarModulo();"><div class="ua-icono">${m.icono}</div><div class="ua-texto"><h3>${m.codigo} - ${m.nombre}</h3><p>📁 ${m.uas.length} unidades. Pincha para entrar 👆</p></div></div>`;
+    html += `<div class="tarjeta" onclick="moduloActivo=${i};pintarModulo();"><div class="icono-principal ${m.color}">${m.icono}</div><div class="tarjeta-texto"><h3>${m.codigo} - ${m.nombre}</h3><p>${m.desc} 👉 Pincha para entrar</p></div><div style="font-size:24px">➡️</div></div>`;
   });
   contenido.innerHTML = html;
+  window.scrollTo(0,0);
 }
 function pintarModulo(){
   const m = MODULOS[moduloActivo];
-  document.getElementById("tituloPrincipal").textContent = m.icono + " " + m.codigo + " - " + m.nombre;
-  document.getElementById("subtituloPrincipal").textContent = "📚 Pincha en una unidad para verla";
-  let html = `<div class="modulo-titulo"><h2>${m.icono} ${m.codigo} - ${m.nombre}</h2><p>📁 ${m.uas.length} unidades - Pulsa en cada unidad para abrirla 👇</p></div>`;
+  let html = `<a class="boton-volver" href="#" onclick="pintarInicio();return false;">⬅️ Volver a todos los módulos</a><div class="modulo-titulo"><h2>${m.icono} ${m.codigo} - ${m.nombre}</h2><p>📁 ${m.uas.length} unidades - Pulsa en cada unidad para abrirla 👇</p></div>`;
   m.uas.forEach((ua, idx)=>{
     let id = m.codigo + "-" + idx;
     let icono = ICONOS[idx % ICONOS.length];
@@ -149,6 +138,7 @@ function pintarModulo(){
     </div>`;
   });
   contenido.innerHTML = html;
+  window.scrollTo(0,0);
 }
 function mostrarPanel(e, id, cual){
   e.stopPropagation();
@@ -160,7 +150,6 @@ function mostrarPanel(e, id, cual){
   });
   document.getElementById(id+"-"+cual).classList.add("active");
 }
-pintarMenu();
 pintarInicio();
 </script>
 </body>
