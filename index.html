@@ -3,66 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Habilitación para la Docencia</title>
+<title>Habilitación para la Docencia - 510h</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f4f6f9;color:#222}
-header{background:#1a3a5e;color:white;padding:40px 20px;text-align:center}
-header h1{margin:0;font-size:28px}
-header p{opacity:.9}
-.container{max-width:900px;margin:0 auto;padding:20px}
-.card{background:white;border-radius:14px;padding:20px;margin-bottom:15px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.card h2{margin:0 0 5px 0;color:#1a3a5e;font-size:19px}
-.card p{margin:0 0 12px 0;color:#555}
-a.btn{display:inline-block;background:#1a3a5e;color:white;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:bold}
-a.btn:hover{background:#244f7e}
-footer{text-align:center;padding:20px;color:#888;font-size:13px}
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;margin:0;background:#eef4ff;color:#1e293b}
+header{background:linear-gradient(135deg,#0a2540 0%,#1a56db 40%,#3b82f6 70%,#60a5fa 100%);color:white;padding:35px 20px;text-align:center}
+header h1{margin:0;font-size:32px;line-height:1.2}
+header p{margin:8px 0 0;opacity:.95}
+.badge{display:inline-block;background:white;color:#1a56db;padding:6px 14px;border-radius:20px;font-weight:bold;font-size:13px;margin-top:14px}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
+.card{border-radius:18px;padding:22px;color:white;box-shadow:0 6px 18px rgba(0,0,0,.12);transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.card .icon{font-size:36px;margin-bottom:8px}
+.card h2{margin:0;font-size:19px;line-height:1.3}
+.card p{margin:6px 0 14px;opacity:.92;font-size:14px;line-height:1.4}
+.horas{display:inline-block;background:rgba(255,255,255,.25);padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold}
+a.btn{display:inline-block;background:white;color:#0a2540;padding:11px 18px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:12px}
+.c1{background:linear-gradient(135deg,#0a2540,#1e40af)}
+.c2{background:linear-gradient(135deg,#1a56db,#3b82f6)}
+.c3{background:linear-gradient(135deg,#0369a1,#0ea5e9)}
+.c4{background:linear-gradient(135deg,#1d4ed8,#60a5fa)}
+.c5{background:linear-gradient(135deg,#312e81,#6366f1)}
+.c6{background:linear-gradient(135deg,#0e7490,#22d3ee)}
+.c7{background:linear-gradient(135deg,#1e3a8a,#93c5fd);color:#0a2540}
+.c8{background:linear-gradient(135deg,#334155,#64748b)}
+footer{text-align:center;padding:25px;color:#64748b;font-size:13px}
 </style>
 </head>
 <body>
 <header>
-<h1>Habilitación para la Docencia</h1>
-<p>Certificado de Profesionalidad - Recursos del curso</p>
-<p>Bienvenidos / as. Aquí tenéis todas las fichas por módulos.</p>
+<h1>✨ Habilitación para la Docencia ✨</h1>
+<p>Certificado Profesional SSC_C_017_5B - Nivel 3</p>
+<p>Programar, impartir, tutorizar y evaluar en Formación Profesional</p>
+<span class="badge">📚 510 HORAS • 8 MÓDULOS • GRADOS A, B y C</span>
 </header>
 <div class="container">
-
-<div class="card">
-<h2>MF1441 - Programación didáctica</h2>
-<p>Programación de acciones formativas para el empleo.</p>
-<a class="btn" href="MF1441">Entrar en MF1441</a>
+<div class="grid">
+<div class="card c1"><div class="icon">🗂️ 📝</div><h2>MP1705 - Programación didáctica</h2><p>Programación de los grados A, B y C del Sistema de FP.</p><span class="horas">90 HORAS</span><br><a class="btn" href="MP1705">Entrar →</a></div>
+<div class="card c2"><div class="icon">🎨 📦</div><h2>MP1706 - Gestión de materiales</h2><p>Materiales, medios y recursos didácticos.</p><span class="horas">90 HORAS</span><br><a class="btn" href="MP1706">Entrar →</a></div>
+<div class="card c3"><div class="icon">🧭 💼</div><h2>MP1707 - Orientación profesional</h2><p>Orientación en los grados A, B y C.</p><span class="horas">60 HORAS</span><br><a class="btn" href="MP1707">Entrar →</a></div>
+<div class="card c4"><div class="icon">✅ 📊</div><h2>MP1783 - Evaluación</h2><p>Evaluación del proceso de enseñanza-aprendizaje.</p><span class="horas">60 HORAS</span><br><a class="btn" href="MP1783">Entrar →</a></div>
+<div class="card c5"><div class="icon">👩‍🏫 🎤</div><h2>MP1784 - Impartir acciones formativas</h2><p>Procesos para impartir acciones formativas.</p><span class="horas">90 HORAS</span><br><a class="btn" href="MP1784">Entrar →</a></div>
+<div class="card c6"><div class="icon">🤝 👥</div><h2>MP1785 - Acción tutorial</h2><p>Acción tutorial de los grados A, B y C.</p><span class="horas">60 HORAS</span><br><a class="btn" href="MP1785">Entrar →</a></div>
+<div class="card c7"><div class="icon">💻 🤖</div><h2>MP1786 - Competencia digital</h2><p>Competencia digital para la práctica docente, IA y TIC.</p><span class="horas">30 HORAS</span><br><a class="btn" href="MP1786">Entrar →</a></div>
+<div class="card c8"><div class="icon">🦺 ⚠️</div><h2>MP1782 - Prevención de riesgos</h2><p>Prevención de riesgos laborales.</p><span class="horas">30 HORAS</span><br><a class="btn" href="MP1782">Entrar →</a></div>
 </div>
-
-<div class="card">
-<h2>MF1442 - Materiales didácticos</h2>
-<p>Selección, elaboración y adaptación de materiales.</p>
-<a class="btn" href="MF1442">Entrar en MF1442</a>
 </div>
-
-<div class="card">
-<h2>MF1443 - Orientación laboral</h2>
-<p>Orientación laboral y promoción de la calidad.</p>
-<a class="btn" href="MF1443">Entrar en MF1443</a>
-</div>
-
-<div class="card">
-<h2>MF1444 - Impartición y tutorización</h2>
-<p>Impartición y tutorización de acciones formativas.</p>
-<a class="btn" href="MF1444">Entrar en MF1444</a>
-</div>
-
-<div class="card">
-<h2>MF1445 - Evaluación</h2>
-<p>Evaluación del proceso de enseñanza-aprendizaje.</p>
-<a class="btn" href="MF1445">Entrar en MF1445</a>
-</div>
-
-<div class="card">
-<h2>MF1446 - Orientación laboral y empleo</h2>
-<p>Módulo de prácticas y orientación.</p>
-<a class="btn" href="MF1446">Entrar en MF1446</a>
-</div>
-
-</div>
-<footer>Curso Habilitación para la Docencia - Angélica Agudo</footer>
+<footer>Curso Habilitación para la Docencia • Angélica Agudo • 510h</footer>
 </body>
 </html>
