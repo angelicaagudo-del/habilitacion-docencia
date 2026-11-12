@@ -48,6 +48,10 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <footer>🎨 Página principal con dibujos y colores</footer>
 <script>
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
+const MANUAL_MP1706_UA1 = "UA1-Manual.pdf";
+const PRES_MP1706_UA1 = "UA1-Presentacion.pdf";
+const ANEXO1_UA1 = "UA1-Anexo1.pdf";
+const ANEXO2_UA1 = "UA1-Anexo2.pdf";
 const MANUAL_MP1706_UA2 = "UA2-Manual.pdf";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
@@ -117,10 +121,20 @@ function pintarModulo(){
     let id = m.codigo + "-" + idx;
     let icono = ICONOS[idx % ICONOS.length];
     let manualHTML = "";
-    if(m.codigo==="MP1706" && idx===1){
+    let presHTML = "";
+    let fichasHTML = "";
+    if(m.codigo==="MP1706" && idx===0){
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 1 - Ya subido</b><br>Este es el manual de Introducción a los materiales didácticos.<br><br><a href="${MANUAL_MP1706_UA1}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Si no se abre, dale a descargar.`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 1 - Ya subida</b><br>Esta es la presentación de la Unidad 1.<br><br><a href="${PRES_MP1706_UA1}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación</a><br><br>Si no se abre, dale a descargar.`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas / Anexos - Unidad 1 - Ya subidos</b><br>Aquí están los anexos de la Unidad 1.<br><br><a href="${ANEXO1_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 1</a><br><br><a href="${ANEXO2_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 2</a><br><br>Si no se abre, dale a descargar.`;
+    } else if(m.codigo==="MP1706" && idx===1){
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 2 - Ya subido</b><br>Este es el manual de Elaboración y adaptación de materiales.<br><br><a href="${MANUAL_MP1706_UA2}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Si no se abre, dale a descargar.`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.`;
     } else {
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: 📄 Ficha ${idx+1} - Sesión ${idx+1}.pdf`;
     }
     html += `<div class="ua" onclick="document.getElementById('body-${id}').classList.toggle('open')">
       <div class="ua-icono">${icono}</div>
@@ -135,9 +149,9 @@ function pintarModulo(){
           <button onclick="mostrarPanel(event,'${id}','entregar')">📤 Entregar actividades</button>
           <button onclick="mostrarPanel(event,'${id}','corregidas')">✅ Actividades corregidas</button>
         </div>
-        <div class="panel active" id="${id}-fichas"><div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: 📄 Ficha ${idx+1} - Sesión ${idx+1}.pdf</div>
+        <div class="panel active" id="${id}-fichas">${fichasHTML}</div>
         <div class="panel" id="${id}-manual">${manualHTML}</div>
-        <div class="panel" id="${id}-presentacion"><div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.</div>
+        <div class="panel" id="${id}-presentacion">${presHTML}</div>
         <div class="panel" id="${id}-entregar"><div class="icono-grande">📤✉️</div><b>Entregar actividades - En Drive</b><br>Entra en tu carpeta con tu nombre y sube ahí tu actividad sin corregir.<br><br><a href="${LINK_DRIVE}" target="_blank">📤 ➡️ Pincha aquí para entregar</a><br><br>Verás la lista con los nombres de todos, pero solo puedes abrir tu carpeta.</div>
         <div class="panel" id="${id}-corregidas"><div class="icono-grande">✅⭐</div><b>Actividades corregidas - En Drive</b><br>Entra en tu carpeta con tu nombre y ahí estará tu actividad ya corregida.<br><br><a href="${LINK_DRIVE}" target="_blank">✅ ➡️ Pincha aquí para ver tu actividad corregida</a><br><br>Busca tu nombre: 👩 María, 👩 Lourdes, 👨 Oscar, 👩 Piedad, 👨 Jonathan, 👩 Isabel, 👨 Sergio, 👩 Nuria, 👨 Juan Luis...</div>
       </div>
