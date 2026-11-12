@@ -5,35 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SSC_C_017_5B - Habilitación para la Docencia</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f4f6f8;color:#222}
-header{background:#0b3d5e;color:white;padding:20px;text-align:center}
-header h1{margin:0;font-size:22px}
-header p{margin:6px 0 0}
-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px;background:white;position:sticky;top:0;z-index:10}
-nav button{border:1px solid #0b3d5e;background:white;color:#0b3d5e;padding:8px 12px;border-radius:20px;cursor:pointer}
-nav button.active{background:#0b3d5e;color:white}
-main{max-width:980px;margin:auto;padding:16px}
-.modulo{background:white;border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.modulo h2{margin:0 0 4px;color:#0b3d5e;font-size:19px}
-.modulo p{margin:0 0 12px;color:#666;font-size:14px}
-.ua{border:1px solid #e2e2e2;border-radius:10px;margin-bottom:10px;overflow:hidden}
-.ua-head{background:#eef4f8;padding:12px;cursor:pointer;font-weight:bold}
-.ua-body{display:none;padding:14px}
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;margin:0;background:#f1f5f9;color:#222}
+header{background:#2563eb;color:white;padding:28px 16px;text-align:center}
+header a{color:#dbeafe;text-decoration:none;font-size:13px}
+header h1{margin:8px 0 4px;font-size:26px}
+header p{margin:0;color:#dbeafe;font-size:14px}
+nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:14px;background:white}
+nav button{border:1px solid #2563eb;background:white;color:#2563eb;padding:8px 14px;border-radius:20px;cursor:pointer;font-weight:bold}
+nav button.active{background:#2563eb;color:white}
+main{max-width:900px;margin:auto;padding:16px}
+.modulo-titulo{background:white;border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.modulo-titulo h2{margin:0;color:#1e40af;font-size:20px}
+.modulo-titulo p{margin:6px 0 0;color:#666;font-size:14px}
+.ua{background:white;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.06);cursor:pointer}
+.ua h3{margin:0;color:#1e40af;font-size:17px}
+.ua p{margin:6px 0 12px;color:#666;font-size:14px}
+.ua-body{display:none;border-top:1px solid #eee;padding-top:12px}
 .ua-body.open{display:block}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.tabs button{border:1px solid #ccc;background:#fff;padding:7px 10px;border-radius:20px;cursor:pointer;font-size:13px}
-.tabs button.active{background:#0b3d5e;color:#fff;border-color:#0b3d5e}
-.panel{display:none;background:#fafafa;border:1px dashed #ccc;border-radius:10px;padding:14px;font-size:14px}
+.tabs button{border:0;background:#e0e7ff;color:#1e40af;padding:8px 12px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
+.tabs button.active{background:#2563eb;color:white}
+.panel{display:none;background:#f8fafc;border-radius:10px;padding:14px;font-size:14px;line-height:1.5}
 .panel.active{display:block}
-.panel a{color:#0b3d5e;font-weight:bold}
-.badge{display:inline-block;background:#e8f5e9;color:#2e7d32;padding:3px 8px;border-radius:20px;font-size:12px;margin-left:6px}
+.panel a{display:inline-block;background:#2563eb;color:white;padding:9px 14px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
+.badge{display:inline-block;background:#dbeafe;color:#1e40af;padding:3px 8px;border-radius:20px;font-size:12px;margin-left:6px}
 footer{text-align:center;padding:20px;color:#888;font-size:13px}
 </style>
 </head>
 <body>
 <header>
-<h1>SSC_C_017_5B - Habilitación para la Docencia en Grados A, B y C</h1>
-<p>Repositorio del curso - 510 h - Angélica Agudo Polo</p>
+<a href="#" onclick="volver()">← Volver a todos los módulos</a>
+<h1 id="tituloPrincipal">SSC_C_017_5B - Habilitación para la Docencia en Grados A, B y C</h1>
+<p id="subtituloPrincipal">Repositorio del curso - 510 h - Angélica Agudo Polo</p>
 </header>
 <nav id="menuModulos"></nav>
 <main id="contenido"></main>
@@ -41,58 +45,59 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <script>
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
 const MODULOS = [
-{codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", uas:[
-"UA1. El Sistema de Formación Profesional y su marco normativo",
-"UA2. Organización curricular de los grados A, B y C",
-"UA3. Coordinación docente y organización de la acción formativa",
-"UA4. Diseño de la programación didáctica",
-"UA5. Temporalización y planificación de la acción formativa"]},
-{codigo:"MP1706", nombre:"Gestión de materiales, medios y recursos didácticos", uas:[
-"UA1. Selección de materiales, medios y recursos didácticos",
-"UA2. Diseño y elaboración de materiales didácticos",
-"UA3. Organización de recursos para el desarrollo de la formación",
-"UA4. Utilización de materiales, medios técnicos y recursos audiovisuales y multimedia",
-"UA5. Evaluación de materiales, medios y recursos didácticos"]},
-{codigo:"MP1707", nombre:"Orientación profesional", uas:[
-"UA1. El Sistema de Formación Profesional y las oportunidades de desarrollo profesional",
-"UA2. El mercado laboral y las oportunidades de empleo",
-"UA3. Herramientas para la búsqueda activa de empleo",
-"UA4. Diseño del itinerario profesional y desarrollo de la empleabilidad",
-"UA5. Orientación profesional, igualdad e inclusión en el acceso al empleo",
-"UA6. Sostenibilidad y retos ambientales y sociales en el entorno profesional"]},
-{codigo:"MP1783", nombre:"Evaluación del proceso de enseñanza-aprendizaje", uas:[
-"UA1. Normativa y características de la evaluación en los grados A, B y C",
-"UA2. Planificación del proceso de evaluación",
-"UA3. Técnicas e instrumentos de evaluación",
-"UA4. Diseño y elaboración de instrumentos de evaluación",
-"UA5. Evaluación y calificación de los aprendizajes",
-"UA6. Evaluación de la calidad del proceso de enseñanza-aprendizaje",
-"UA7. Análisis de resultados y mejora del proceso de enseñanza-aprendizaje"]},
-{codigo:"MP1784", nombre:"Procesos para impartir acciones formativas", uas:[
-"UA1. Desarrollo de estrategias facilitadoras del proceso de aprendizaje",
-"UA2. Cohesión y participación activa del alumnado",
-"UA3. Técnicas de comunicación en las acciones formativas",
-"UA4. Estrategias metodológicas para la impartición de acciones formativas",
-"UA5. Aspectos psicopedagógicos del aprendizaje",
-"UA6. Atención personalizada y seguimiento del aprendizaje"]},
-{codigo:"MP1785", nombre:"Acción tutorial", uas:[
-"UA1. Condiciones y requisitos iniciales de las acciones formativas",
-"UA2. La función tutorial en el proceso de enseñanza-aprendizaje",
-"UA3. Técnicas y herramientas de tutorización y seguimiento",
-"UA4. Estrategias didácticas y comunicación para la participación",
-"UA5. Acción tutorial y formación dual en la empresa",
-"UA6. Requisitos de superación, evaluación y valoración del progreso"]},
-{codigo:"MP1786", nombre:"Competencia digital para la práctica docente", uas:[
-"UA1. Comunicación, colaboración, búsqueda y gestión de información y contenidos digitales",
-"UA2. Tecnologías digitales aplicadas a la enseñanza, el aprendizaje y la evaluación",
-"UA3. Accesibilidad, inclusión, alfabetización mediática, seguridad y bienestar digital"]},
-{codigo:"PRACTICAS", nombre:"Prácticas / Formación en Empresa", uas:[
-"UA1. Información general de prácticas",
-"UA2. Documentación y seguimiento"]}
+{codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", horas:"", uas:[
+["El Sistema de Formación Profesional y su marco normativo","Introducción al sistema y su normativa."],
+["Organización curricular de los grados A, B y C","Cómo se organizan los grados A, B y C."],
+["Coordinación docente y organización de la acción formativa","Coordinación y organización de la formación."],
+["Diseño de la programación didáctica","Cómo diseñar tu programación."],
+["Temporalización y planificación de la acción formativa","Temporalizar y planificar la formación."]]},
+{codigo:"MP1706", nombre:"Gestión de materiales, medios y recursos didácticos", horas:"90 horas", uas:[
+["Introducción a los materiales didácticos","Concepto, tipos y criterios de selección."],
+["Elaboración y adaptación de materiales","Unidad que estás impartiendo ahora. Elaboración, adaptación y uso de medios."],
+["Medios y recursos tecnológicos","Recursos TIC, audiovisuales y digitales para el aula."],
+["Utilización de materiales, medios técnicos y recursos audiovisuales","Uso práctico en el aula."],
+["Evaluación de materiales, medios y recursos didácticos","Cómo evaluar si el material funciona."]]},
+{codigo:"MP1707", nombre:"Orientación profesional", horas:"", uas:[
+["El Sistema de Formación Profesional y las oportunidades de desarrollo profesional","Oportunidades del sistema."],
+["El mercado laboral y las oportunidades de empleo","Conoce el mercado laboral."],
+["Herramientas para la búsqueda activa de empleo","Herramientas para buscar empleo."],
+["Diseño del itinerario profesional y desarrollo de la empleabilidad","Diseña tu itinerario."],
+["Orientación profesional, igualdad e inclusión en el acceso al empleo","Igualdad e inclusión."],
+["Sostenibilidad y retos ambientales y sociales en el entorno profesional","Sostenibilidad en lo profesional."]]},
+{codigo:"MP1783", nombre:"Evaluación del proceso de enseñanza-aprendizaje", horas:"", uas:[
+["Normativa y características de la evaluación en los grados A, B y C","Normativa de evaluación."],
+["Planificación del proceso de evaluación","Cómo planificar la evaluación."],
+["Técnicas e instrumentos de evaluación","Técnicas e instrumentos."],
+["Diseño y elaboración de instrumentos de evaluación","Diseña tus instrumentos."],
+["Evaluación y calificación de los aprendizajes","Evaluar y calificar."],
+["Evaluación de la calidad del proceso de enseñanza-aprendizaje","Calidad del proceso."],
+["Análisis de resultados y mejora del proceso de enseñanza-aprendizaje","Mejora con los resultados."]]},
+{codigo:"MP1784", nombre:"Procesos para impartir acciones formativas", horas:"", uas:[
+["Desarrollo de estrategias facilitadoras del proceso de aprendizaje","Estrategias que facilitan aprender."],
+["Cohesión y participación activa del alumnado","Cohesión y participación."],
+["Técnicas de comunicación en las acciones formativas","Comunicar en el aula."],
+["Estrategias metodológicas para la impartición de acciones formativas","Metodologías para impartir."],
+["Aspectos psicopedagógicos del aprendizaje","Cómo aprendemos."],
+["Atención personalizada y seguimiento del aprendizaje","Seguimiento personalizado."]]},
+{codigo:"MP1785", nombre:"Acción tutorial", horas:"", uas:[
+["Condiciones y requisitos iniciales de las acciones formativas","Requisitos iniciales."],
+["La función tutorial en el proceso de enseñanza-aprendizaje","Qué es la tutoría."],
+["Técnicas y herramientas de tutorización y seguimiento","Herramientas de tutoría."],
+["Estrategias didácticas y comunicación para la participación","Participación y comunicación."],
+["Acción tutorial y formación dual en la empresa","Tutoría en la empresa."],
+["Requisitos de superación, evaluación y valoración del progreso","Superación y progreso."]]},
+{codigo:"MP1786", nombre:"Competencia digital para la práctica docente", horas:"", uas:[
+["Comunicación, colaboración, búsqueda y gestión de información y contenidos digitales","Buscar y gestionar información digital."],
+["Tecnologías digitales aplicadas a la enseñanza, el aprendizaje y la evaluación","Tecnología en el aula y en la evaluación."],
+["Accesibilidad, inclusión, alfabetización mediática, seguridad y bienestar digital","Accesibilidad y seguridad digital."]]},
+{codigo:"PRACTICAS", nombre:"Prácticas / Formación en Empresa", horas:"", uas:[
+["Información general de prácticas","Información general."],
+["Documentación y seguimiento","Documentación y seguimiento."]]}
 ];
-let moduloActivo = 0;
+let moduloActivo = -1;
 const menu = document.getElementById("menuModulos");
 const contenido = document.getElementById("contenido");
+function volver(){ moduloActivo = -1; pintarMenu(); pintarInicio(); document.getElementById("tituloPrincipal").textContent = "SSC_C_017_5B - Habilitación para la Docencia en Grados A, B y C"; document.getElementById("subtituloPrincipal").textContent = "Repositorio del curso - 510 h - Angélica Agudo Polo"; }
 function pintarMenu(){
   menu.innerHTML = "";
   MODULOS.forEach((m,i)=>{
@@ -103,22 +108,32 @@ function pintarMenu(){
     menu.appendChild(b);
   });
 }
+function pintarInicio(){
+  let html = "";
+  MODULOS.forEach((m,i)=>{
+    html += `<div class="ua" onclick="moduloActivo=${i};pintarMenu();pintarModulo();"><h3>📁 ${m.codigo} - ${m.nombre}</h3><p>${m.uas.length} unidades. Pincha para entrar.</p></div>`;
+  });
+  contenido.innerHTML = html;
+}
 function pintarModulo(){
   const m = MODULOS[moduloActivo];
-  let html = `<div class="modulo"><h2>${m.codigo} - ${m.nombre}</h2><p>${m.uas.length} unidades - Pulsa en cada unidad para abrirla</p>`;
+  document.getElementById("tituloPrincipal").textContent = m.codigo + " - " + m.nombre;
+  document.getElementById("subtituloPrincipal").textContent = (m.horas ? m.horas + " - " : "") + "Pincha en una unidad para verla";
+  let html = `<div class="modulo-titulo"><h2>${m.codigo} - ${m.nombre}</h2><p>${m.uas.length} unidades - Pulsa en cada unidad para abrirla</p></div>`;
   m.uas.forEach((ua, idx)=>{
     let id = m.codigo + "-" + idx;
-    html += `<div class="ua">
-      <div class="ua-head" onclick="document.getElementById('body-${id}').classList.toggle('open')">▶ ${ua} <span class="badge">5 pestañas</span></div>
-      <div class="ua-body" id="body-${id}">
+    html += `<div class="ua" onclick="document.getElementById('body-${id}').classList.toggle('open')">
+      <h3>📁 Unidad ${idx+1} - ${ua[0]}</h3>
+      <p>${ua[1]}</p>
+      <div class="ua-body" id="body-${id}" onclick="event.stopPropagation()">
         <div class="tabs">
-          <button class="active" onclick="mostrarPanel(event,'${id}','fichas')">Fichas</button>
-          <button onclick="mostrarPanel(event,'${id}','manual')">Manual</button>
-          <button onclick="mostrarPanel(event,'${id}','presentacion')">Presentación</button>
-          <button onclick="mostrarPanel(event,'${id}','entregar')">Entregar actividades</button>
-          <button onclick="mostrarPanel(event,'${id}','corregidas')">Actividades corregidas</button>
+          <button class="active" onclick="mostrarPanel(event,'${id}','fichas')">📄 Fichas</button>
+          <button onclick="mostrarPanel(event,'${id}','manual')">📘 Manual</button>
+          <button onclick="mostrarPanel(event,'${id}','presentacion')">📊 Presentación</button>
+          <button onclick="mostrarPanel(event,'${id}','entregar')">📤 Entregar actividades</button>
+          <button onclick="mostrarPanel(event,'${id}','corregidas')">✅ Actividades corregidas</button>
         </div>
-        <div class="panel active" id="${id}-fichas"><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: <i>Ficha 1 - Sesión 1.pdf</i></div>
+        <div class="panel active" id="${id}-fichas"><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: Ficha ${idx+1} - Sesión ${idx+1}.pdf</div>
         <div class="panel" id="${id}-manual"><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.</div>
         <div class="panel" id="${id}-presentacion"><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.</div>
         <div class="panel" id="${id}-entregar"><b>Entregar actividades - En Drive</b><br>Entra en tu carpeta con tu nombre y sube ahí tu actividad sin corregir.<br><br><a href="${LINK_DRIVE}" target="_blank">➡️ Pincha aquí para entregar</a><br><br>Verás la lista con los nombres de todos, pero solo puedes abrir tu carpeta.</div>
@@ -126,7 +141,6 @@ function pintarModulo(){
       </div>
     </div>`;
   });
-  html += `</div>`;
   contenido.innerHTML = html;
 }
 function mostrarPanel(e, id, cual){
@@ -140,7 +154,7 @@ function mostrarPanel(e, id, cual){
   document.getElementById(id+"-"+cual).classList.add("active");
 }
 pintarMenu();
-pintarModulo();
+pintarInicio();
 </script>
 </body>
 </html>
