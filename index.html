@@ -42,7 +42,6 @@ main{max-width:900px;margin:auto;padding:16px}
 .panel a, .subpanel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
 .icono-grande{font-size:36px}
 footer{text-align:center;padding:20px;color:#888;font-size:13px}
-/* PANTALLA DE CÓDIGO */
 #pantalla-codigo{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#1e40af,#2563eb);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
 #caja-codigo{background:white;border-radius:20px;padding:28px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 #caja-codigo h2{color:#1e40af;margin:0 0 8px;font-size:22px}
@@ -51,6 +50,7 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 #caja-codigo input:focus{border-color:#2563eb}
 #caja-codigo button{width:100%;background:#2563eb;color:white;border:0;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer}
 #mensaje-error{color:#dc2626;font-weight:bold;font-size:14px;margin-top:10px;display:none}
+.alumno-link{display:block !important;margin-bottom:6px !important}
 </style>
 </head>
 <body>
@@ -65,7 +65,6 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
     <p style="font-size:12px;color:#999;margin-top:16px">Si no tienes el código, pídeselo a tu profesora Angélica</p>
   </div>
 </div>
-
 <header>
 <h1>🎓 SSC_C_017_5B - Habilitación para la Docencia</h1>
 <p>📚 Grados A, B y C - 510 h - 👩‍🏫 Angélica Agudo Polo<br>👆 Pincha en un módulo para entrar</p>
@@ -73,7 +72,6 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <main id="contenido"></main>
 <footer>🎨 Página principal con dibujos y colores</footer>
 <script>
-// CÓDIGO DE ACCESO
 const CODIGO_CORRECTO = "SSC2026";
 function comprobarCodigo(){
   const valor = document.getElementById("input-codigo").value.trim();
@@ -93,7 +91,6 @@ document.getElementById("input-codigo").addEventListener("keypress", function(e)
 if(sessionStorage.getItem("accesoSSC") === "ok"){
   document.getElementById("pantalla-codigo").style.display = "none";
 }
-
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
 const MANUAL_MP1706_UA1 = "UA1-Manual.pdf";
 const PRES_MP1706_UA1 = "UA1-Presentacion.pdf";
@@ -106,6 +103,26 @@ const FICHA_S2_1 = "UA1-S2-Ficha1.docx";
 const FICHA_S2_2 = "UA1-S2-Ficha2.docx";
 const FICHA_S3_1 = "UA1-S3-Ficha1.docx";
 const FICHA_S3_2 = "UA1-S3-Ficha2.docx";
+const CORREGIDAS = [
+["MARÍA","https://drive.google.com/drive/folders/1xa46sfFhwnGt_tllEXhsVBMj2a_kkpOR"],
+["LOURDES","https://drive.google.com/drive/folders/1ggZLHk0mtrAbtAVf5TmcSoeOFWOBZ4m3"],
+["OSCAR","https://drive.google.com/drive/folders/1pSbapQEEavLUEtSd4YVCTpU3d4Kf58CG"],
+["PIEDAD","https://drive.google.com/drive/folders/1z1SGKPyVBsJjxKlgbx_VfYx9lLopn9FP"],
+["JONATHAN","https://drive.google.com/drive/folders/1t2pjr-1fQ8uF23ydvLpchBhrov_I3ygU"],
+["ISABEL","https://drive.google.com/drive/folders/15FWl7vKaO9lmm3NH1kWU87NhLLGzSzD8"],
+["SERGIO","https://drive.google.com/drive/folders/1y0YpK-p72tt9UermKqocSpO5KltSUXzX"],
+["NURIA","https://drive.google.com/drive/folders/12PXrhu_9yzha9iRV92QUGMyjqYL069zf"],
+["JUAN LUIS","https://drive.google.com/drive/folders/1ImQ6MedD1yWLyQia_2SMwzYa9tJjxnIL"],
+["INMA","https://drive.google.com/drive/folders/1F_RYNpWeUSCrLr-vmkQfdPBpPDqi4IO7"],
+["RUBÉN","https://drive.google.com/drive/folders/1Ma_JIKI1CfUrFgqoc3vtC_XI8G1NzFES"]
+];
+function htmlCorregidas(){
+  let h = '<div class="icono-grande">✅⭐</div><b>Actividades corregidas - Pincha en tu nombre</b><br>En todas las UA de todos los MP están los 11.<br><br>';
+  CORREGIDAS.forEach(function(a){
+    h += '<a class="alumno-link" href="'+a[1]+'" target="_blank">✅ ➡️ '+a[0]+'</a>';
+  });
+  return h;
+}
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
 {codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", color:"c1", desc:"📝 Aprende a programar tus clases - 5 unidades", uas:[
@@ -214,7 +231,7 @@ function pintarModulo(){
         <div class="panel" id="${id}-presentacion">${presHTML}</div>
         <div class="panel" id="${id}-fichas">${fichasHTML}</div>
         <div class="panel" id="${id}-entregar"><div class="icono-grande">📤✉️</div><b>Entregar actividades - En Drive</b><br>Entra en tu carpeta con tu nombre y sube ahí tu actividad sin corregir.<br><br><a href="${LINK_DRIVE}" target="_blank">📤 ➡️ Pincha aquí para entregar</a><br><br>Verás la lista con los nombres de todos, pero solo puedes abrir tu carpeta.</div>
-        <div class="panel" id="${id}-corregidas"><div class="icono-grande">✅⭐</div><b>Actividades corregidas - En Drive</b><br>Entra en tu carpeta con tu nombre y ahí estará tu actividad ya corregida.<br><br><a href="${LINK_DRIVE}" target="_blank">✅ ➡️ Pincha aquí para ver tu actividad corregida</a><br><br>Busca tu nombre: 👩 María, 👩 Lourdes, 👨 Oscar, 👩 Piedad, 👨 Jonathan, 👩 Isabel, 👨 Sergio, 👩 Nuria, 👨 Juan Luis...</div>
+        <div class="panel" id="${id}-corregidas">${htmlCorregidas()}</div>
       </div>
       </div>
     </div>`;
