@@ -45,9 +45,10 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <p>📚 Grados A, B y C - 510 h - 👩‍🏫 Angélica Agudo Polo<br>👆 Pincha en un módulo para entrar</p>
 </header>
 <main id="contenido"></main>
-<footer>🎨 Página principal con dibujos y colores - Sin menú duplicado</footer>
+<footer>🎨 Página principal con dibujos y colores</footer>
 <script>
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
+const MANUAL_MP1706_UA2 = "MP1706/UA2_Diseño y adaptación de materiales didácticos.docx.pdf";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
 {codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", color:"c1", desc:"📝 Aprende a programar tus clases - 5 unidades", uas:[
@@ -115,6 +116,12 @@ function pintarModulo(){
   m.uas.forEach((ua, idx)=>{
     let id = m.codigo + "-" + idx;
     let icono = ICONOS[idx % ICONOS.length];
+    let manualHTML = "";
+    if(m.codigo==="MP1706" && idx===1){
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 2 - Ya subido</b><br>Este es el manual de Elaboración y adaptación de materiales.<br><br><a href="${encodeURI(MANUAL_MP1706_UA2)}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Si no se abre, dale a descargar.`;
+    } else {
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.`;
+    }
     html += `<div class="ua" onclick="document.getElementById('body-${id}').classList.toggle('open')">
       <div class="ua-icono">${icono}</div>
       <div class="ua-texto">
@@ -129,7 +136,7 @@ function pintarModulo(){
           <button onclick="mostrarPanel(event,'${id}','corregidas')">✅ Actividades corregidas</button>
         </div>
         <div class="panel active" id="${id}-fichas"><div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.<br><br>Ejemplo: 📄 Ficha ${idx+1} - Sesión ${idx+1}.pdf</div>
-        <div class="panel" id="${id}-manual"><div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.</div>
+        <div class="panel" id="${id}-manual">${manualHTML}</div>
         <div class="panel" id="${id}-presentacion"><div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.</div>
         <div class="panel" id="${id}-entregar"><div class="icono-grande">📤✉️</div><b>Entregar actividades - En Drive</b><br>Entra en tu carpeta con tu nombre y sube ahí tu actividad sin corregir.<br><br><a href="${LINK_DRIVE}" target="_blank">📤 ➡️ Pincha aquí para entregar</a><br><br>Verás la lista con los nombres de todos, pero solo puedes abrir tu carpeta.</div>
         <div class="panel" id="${id}-corregidas"><div class="icono-grande">✅⭐</div><b>Actividades corregidas - En Drive</b><br>Entra en tu carpeta con tu nombre y ahí estará tu actividad ya corregida.<br><br><a href="${LINK_DRIVE}" target="_blank">✅ ➡️ Pincha aquí para ver tu actividad corregida</a><br><br>Busca tu nombre: 👩 María, 👩 Lourdes, 👨 Oscar, 👩 Piedad, 👨 Jonathan, 👩 Isabel, 👨 Sergio, 👩 Nuria, 👨 Juan Luis...</div>
