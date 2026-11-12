@@ -48,7 +48,7 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <footer>🎨 Página principal con dibujos y colores</footer>
 <script>
 const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
-const MANUAL_MP1706_UA2 = "UA2_Diseño y adaptación de materiales didácticos.docx.pdf";
+const MANUAL_MP1706_UA2 = "https://github.com/angelicaagudo-del/habilitacion-docencia/blob/main/UA2_Dise%C3%B1o%20y%20adaptaci%C3%B3n%20de%20materiales%20did%C3%A1cticos.docx.pdf";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
 {codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", color:"c1", desc:"📝 Aprende a programar tus clases - 5 unidades", uas:[
@@ -118,7 +118,7 @@ function pintarModulo(){
     let icono = ICONOS[idx % ICONOS.length];
     let manualHTML = "";
     if(m.codigo==="MP1706" && idx===1){
-      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 2 - Ya subido</b><br>Este es el manual de Elaboración y adaptación de materiales.<br><br><a href="${encodeURI(MANUAL_MP1706_UA2)}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Si no se abre, dale a descargar.`;
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 2 - Ya subido</b><br>Este es el manual de Elaboración y adaptación de materiales.<br><br><a href="${MANUAL_MP1706_UA2}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Se abre en GitHub, dale a Descargar / Download para verlo.`;
     } else {
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.`;
     }
