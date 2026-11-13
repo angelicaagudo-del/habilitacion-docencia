@@ -93,6 +93,7 @@ if(sessionStorage.getItem("accesoSSC") === "ok"){
   document.getElementById("pantalla-codigo").style.display = "none";
 }
 const MANUAL_MP1706_UA1 = "UA1-Manual.pdf";
+const PRES_MP1706_UA2 = "MP1706-UA2-Presentacion.pdf";
 const PRES_MP1706_UA1 = "UA1-Presentacion.pdf";
 const ANEXO1_UA1 = "UA1-Anexo1.pdf";
 const ANEXO2_UA1 = "UA1-Anexo2.pdf";
@@ -200,7 +201,7 @@ function pintarModulo(){
         <div class="subpanel" id="${id}-s3"><b>📄 Sesión 3</b><br>✏️ Fichas editables en Word. Se descargan al pinchar.<br><br><a href="${FICHA_S3_1}" download>📝 ➡️ FICHA 1: Reto de Hibridación y Transformación Digital</a><br><br><a href="${FICHA_S3_2}" download>📝 ➡️ FICHA 2: Resolución de Casos Prácticos (Ética, Propiedad Intelectual y Accesibilidad)</a></div>`;
     } else if(m.codigo==="MP1706" && idx===1){
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 2 - Ya subido</b><br><br><a href="${MANUAL_MP1706_UA2}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br>Si no se abre, dale a descargar.`;
-      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad, subida al repositorio.`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 2</b><br><br><a href="${PRES_MP1706_UA2}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación</a><br><br>Si no se abre, dale a descargar.`;
       fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad, subidas al repositorio.`;
     } else {
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad, subido al repositorio.`;
