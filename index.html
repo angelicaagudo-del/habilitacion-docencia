@@ -16,7 +16,6 @@ main{max-width:900px;margin:auto;padding:16px}
 .modulo-titulo h2{margin:0;color:#1e40af;font-size:20px}
 .modulo-titulo p{margin:6px 0 0;color:#666;font-size:14px}
 .tarjeta{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);cursor:pointer;display:flex;gap:14px;align-items:center}
-.tarjeta:hover{transform:scale(1.01)}
 .icono-principal{font-size:48px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:16px;flex-shrink:0}
 .c1{background:#dbeafe}.c2{background:#ffedd5}.c3{background:#dcfce7}.c4{background:#e9d5ff}.c5{background:#fef9c3}.c6{background:#fee2e2}.c7{background:#ccfbf1}.c8{background:#fce7f3}
 .tarjeta-texto{flex:1}
@@ -32,14 +31,11 @@ main{max-width:900px;margin:auto;padding:16px}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .tabs button{border:0;background:#e0e7ff;color:#1e40af;padding:9px 12px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
 .tabs button.active{background:#2563eb;color:white}
-.subtabs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
-.subtabs button{border:0;background:#ffedd5;color:#9a3412;padding:8px 12px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:13px}
-.subtabs button.active{background:#ea580c;color:white}
+.tabs button.alumno{background:#dcfce7;color:#166534}
+.tabs button.alumno.active{background:#16a34a;color:white}
 .panel{display:none;background:#f8fafc;border-radius:12px;padding:14px;font-size:14px;line-height:1.5}
 .panel.active{display:block}
-.subpanel{display:none;background:white;border-radius:12px;padding:12px;margin-top:8px;border:1px solid #eee}
-.subpanel.active{display:block}
-.panel a, .subpanel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
+.panel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
 .icono-grande{font-size:36px}
 footer{text-align:center;padding:20px;color:#888;font-size:13px}
 #pantalla-codigo{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#1e40af,#2563eb);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
@@ -47,7 +43,6 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 #caja-codigo h2{color:#1e40af;margin:0 0 8px;font-size:22px}
 #caja-codigo p{color:#666;font-size:14px;margin:0 0 16px;line-height:1.5}
 #caja-codigo input{width:100%;padding:14px;border:2px solid #dbeafe;border-radius:12px;font-size:18px;text-align:center;font-weight:bold;letter-spacing:1px;margin-bottom:12px;outline:none}
-#caja-codigo input:focus{border-color:#2563eb}
 #caja-codigo button{width:100%;background:#2563eb;color:white;border:0;padding:14px;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer}
 #mensaje-error{color:#dc2626;font-weight:bold;font-size:14px;margin-top:10px;display:none}
 </style>
@@ -90,7 +85,20 @@ document.getElementById("input-codigo").addEventListener("keypress", function(e)
 if(sessionStorage.getItem("accesoSSC") === "ok"){
   document.getElementById("pantalla-codigo").style.display = "none";
 }
-const LINK_DRIVE = "https://drive.google.com/drive/folders/1cR5V9gbefH-fNEe8TubGIt4SwPA9DReC?usp=drive_link";
+// LOS 11 ALUMNOS - EN TODAS LAS U
+const ALUMNOS = [
+  {nombre:"MARÍA", link:"https://drive.google.com/drive/folders/1xa46sfFhwnGt_tllEXhsVBMj2a_kkpOR"},
+  {nombre:"LOURDES", link:"https://drive.google.com/drive/folders/1ggZLHk0mtrAbtAVf5TmcSoeOFWOBZ4m3"},
+  {nombre:"OSCAR", link:"https://drive.google.com/drive/folders/1pSbapQEEavLUEtSd4YVCTpU3d4Kf58CG"},
+  {nombre:"PIEDAD", link:"https://drive.google.com/drive/folders/1z1SGKPyVBsJjxKlgbx_VfYx9lLopn9FP"},
+  {nombre:"JONATHAN", link:"https://drive.google.com/drive/folders/1t2pjr-1fQ8uF23ydvLpchBhrov_I3ygU"},
+  {nombre:"ISABEL", link:"https://drive.google.com/drive/folders/15FWl7vKaO9lmm3NH1kWU87NhLLGzSzD8"},
+  {nombre:"SERGIO", link:"https://drive.google.com/drive/folders/1y0YpK-p72tt9UermKqocSpO5KltSUXzX"},
+  {nombre:"NURIA", link:"https://drive.google.com/drive/folders/12PXrhu_9yzha9iRV92QUGMyjqYL069zf"},
+  {nombre:"JUAN LUIS", link:"https://drive.google.com/drive/folders/1ImQ6MedD1yWLyQia_2SMwzYa9tJjxnIL"},
+  {nombre:"INMA", link:"https://drive.google.com/drive/folders/1F_RYNpWeUSCrLr-vmkQfdPBpPDqi4IO7"},
+  {nombre:"RUBÉN", link:"https://drive.google.com/drive/folders/1Ma_JIKI1CfUrFgqoc3vtC_XI8G1NzFES"}
+];
 const MANUAL_MP1706_UA1 = "UA1-Manual.pdf";
 const PRES_MP1706_UA1 = "UA1-Presentacion.pdf";
 const ANEXO1_UA1 = "UA1-Anexo1.pdf";
@@ -185,10 +193,16 @@ function pintarModulo(){
       presHTML = `<div class="icono-grande">🎞️</div><b>Presentación - Unidad 3</b><br><br><a href="https://drive.google.com/file/d/1kaV6FJM01f0EADEDD5bw0QiQNFW2_dO_/preview" target="_blank">🎞️ ➡️ Pincha aquí para abrir la presentación</a>`;
       fichasHTML = `<div class="icono-grande">📄</div><b>Fichas - Unidad 3</b><br><br><a href="MP1706-UA3-S1-Ficha1.docx" download>📝 ➡️ Sesión 1 - Ficha 1</a><br><br><a href="MP1706-UA3-S1-Ficha2.docx" download>📝 ➡️ Sesión 1 - Ficha 2</a><br><br><a href="MP1706-UA3-S2-Ficha1.docx" download>📝 ➡️ Sesión 2 - Ficha 1</a><br><br><a href="MP1706-UA3-S2-Ficha2.docx" download>📝 ➡️ Sesión 2 - Ficha 2</a>`;
     } else {
-      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - En el repositorio</b><br>Aquí va solo el manual de esta unidad.`;
-      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - En el repositorio</b><br>Aquí va solo la presentación de esta unidad.`;
-      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - En el repositorio</b><br>Aquí van las fichas de esta unidad.`;
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual</b><br>Aquí va solo el manual de esta unidad.`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación</b><br>Aquí va solo la presentación de esta unidad.`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas</b><br>Aquí van las fichas de esta unidad.`;
     }
+    let botonesAlumnos = "";
+    let panelesAlumnos = "";
+    ALUMNOS.forEach((a, ai)=>{
+      botonesAlumnos += `<button class="alumno" onclick="mostrarPanel(event,'${id}','alumno${ai}')">👤 ${a.nombre}</button>`;
+      panelesAlumnos += `<div class="panel" id="${id}-alumno${ai}"><div class="icono-grande">👤📂</div><b>Carpeta de ${a.nombre}</b><br>Entra en tu carpeta para entregar y ver tus actividades corregidas.<br><br><a href="${a.link}" target="_blank">📂 ➡️ Pincha aquí para entrar en tu carpeta, ${a.nombre}</a></div>`;
+    });
     html += `<div class="ua" onclick="document.getElementById('body-${id}').classList.toggle('open')">
       <div class="ua-icono">${icono}</div>
       <div class="ua-texto">
@@ -199,14 +213,12 @@ function pintarModulo(){
           <button onclick="mostrarPanel(event,'${id}','manual')">📘 Manual</button>
           <button onclick="mostrarPanel(event,'${id}','presentacion')">🎨 Presentación</button>
           <button onclick="mostrarPanel(event,'${id}','fichas')">📄 Fichas</button>
-          <button onclick="mostrarPanel(event,'${id}','entregar')">📤 Entregar actividades</button>
-          <button onclick="mostrarPanel(event,'${id}','corregidas')">✅ Actividades corregidas</button>
+          ${botonesAlumnos}
         </div>
         <div class="panel active" id="${id}-manual">${manualHTML}</div>
         <div class="panel" id="${id}-presentacion">${presHTML}</div>
         <div class="panel" id="${id}-fichas">${fichasHTML}</div>
-        <div class="panel" id="${id}-entregar"><div class="icono-grande">📤✉️</div><b>Entregar actividades - En Drive</b><br>Entra en tu carpeta con tu nombre y sube ahí tu actividad.<br><br><a href="${LINK_DRIVE}" target="_blank">📤 ➡️ Pincha aquí para entregar</a></div>
-        <div class="panel" id="${id}-corregidas"><div class="icono-grande">✅⭐</div><b>Actividades corregidas - En Drive</b><br>Entra en tu carpeta con tu nombre y ahí estará tu actividad ya corregida.<br><br><a href="${LINK_DRIVE}" target="_blank">✅ ➡️ Pincha aquí para ver tu actividad corregida</a></div>
+        ${panelesAlumnos}
       </div>
       </div>
     </div>`;
@@ -219,8 +231,11 @@ function mostrarPanel(e, id, cual){
   let botones = e.target.parentElement.querySelectorAll("button");
   botones.forEach(b=>b.classList.remove("active"));
   e.target.classList.add("active");
-  ["fichas","manual","presentacion","entregar","corregidas"].forEach(k=>{
-    document.getElementById(id+"-"+k).classList.remove("active");
+  let todos = ["fichas","manual","presentacion"];
+  ALUMNOS.forEach((a, ai)=>{ todos.push("alumno"+ai); });
+  todos.forEach(k=>{
+    let el = document.getElementById(id+"-"+k);
+    if(el) el.classList.remove("active");
   });
   document.getElementById(id+"-"+cual).classList.add("active");
 }
