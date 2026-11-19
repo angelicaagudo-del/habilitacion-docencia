@@ -15,6 +15,14 @@ main{max-width:900px;margin:auto;padding:16px}
 .modulo-titulo{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:8px solid #2563eb}
 .modulo-titulo h2{margin:0;color:#1e40af;font-size:20px}
 .modulo-titulo p{margin:6px 0 0;color:#666;font-size:14px}
+.barra-superior{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.pestana-cronograma{display:inline-flex;align-items:center;gap:8px;background:white;color:#1e40af;border:2px solid #2563eb;padding:11px 18px;border-radius:20px;font-weight:bold;font-size:15px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.pestana-cronograma.active{background:#2563eb;color:white}
+.panel-cronograma{display:none;background:white;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:8px solid #2563eb;text-align:center}
+.panel-cronograma.active{display:block}
+.panel-cronograma h2{margin:0 0 12px;color:#1e40af;font-size:20px}
+.panel-cronograma img{max-width:100%;height:auto;border-radius:12px;border:1px solid #dbeafe;margin-top:8px}
+.panel-cronograma a.btn-descarga{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:12px}
 .tarjeta{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.08);cursor:pointer;display:flex;gap:14px;align-items:center}
 .icono-principal{font-size:48px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:16px;flex-shrink:0}
 .c1{background:#dbeafe}.c2{background:#ffedd5}.c3{background:#dcfce7}.c4{background:#e9d5ff}.c5{background:#fef9c3}.c6{background:#fee2e2}.c7{background:#ccfbf1}.c8{background:#fce7f3}
@@ -109,6 +117,7 @@ const ANEXO1_UA1 = "UA1-Anexo1.pdf";
 const ANEXO2_UA1 = "UA1-Anexo2.pdf";
 const MANUAL_MP1706_UA2 = "UA2-Manual.pdf";
 const PRES_MP1706_UA2 = "MP1706-UA2-Presentacion.pdf";
+const CRONOGRAMA_IMG = "CRONOGRAM-CURSO.JPEG";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
 {codigo:"MP1705", nombre:"Programación Didáctica de los grados A, B y C", icono:"📘", color:"c1", desc:"📝 Aprende a programar tus clases - 5 unidades", uas:[
@@ -162,8 +171,23 @@ const MODULOS = [
 ];
 let moduloActivo = -1;
 const contenido = document.getElementById("contenido");
+function alternarCronograma(){
+  const btn = document.getElementById("btn-cronograma");
+  const panel = document.getElementById("panel-cronograma");
+  if(btn && panel){
+    btn.classList.toggle("active");
+    panel.classList.toggle("active");
+  }
+}
 function pintarInicio(){
-  let html = "";
+  let html = `<div class="barra-superior">
+    <button class="pestana-cronograma" id="btn-cronograma" onclick="alternarCronograma()">🗓️ Cronograma</button>
+  </div>
+  <div class="panel-cronograma" id="panel-cronograma">
+    <h2>🗓️ Cronograma del Curso</h2>
+    <img src="${CRONOGRAMA_IMG}" alt="Cronograma del curso"><br>
+    <a class="btn-descarga" href="${CRONOGRAMA_IMG}" download="CRONOGRAM-CURSO.JPEG">⬇️ Descargar cronograma</a>
+  </div>`;
   MODULOS.forEach((m,i)=>{
     html += `<div class="tarjeta" onclick="moduloActivo=${i};pintarModulo();"><div class="icono-principal ${m.color}">${m.icono}</div><div class="tarjeta-texto"><h3>${m.codigo} - ${m.nombre}</h3><p>${m.desc} 👉 Pincha para entrar</p></div><div style="font-size:24px">➡️</div></div>`;
   });
