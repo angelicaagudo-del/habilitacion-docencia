@@ -49,6 +49,7 @@ main{max-width:900px;margin:auto;padding:16px}
 .subpanel{display:none;background:white;border-radius:12px;padding:12px;margin-top:8px;border:1px solid #eee}
 .subpanel.active{display:block}
 .panel a, .subpanel a{display:inline-block;background:#2563eb;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold;margin-top:8px}
+.visor-incrustado{width:100%;height:520px;border:1px solid #dbeafe;border-radius:12px;margin-top:12px;background:white}
 .icono-grande{font-size:36px}
 footer{text-align:center;padding:20px;color:#888;font-size:13px}
 #pantalla-codigo{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#1e40af,#2563eb);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
@@ -114,6 +115,7 @@ const ANEXO1_UA1 = "UA1-Anexo1.pdf";
 const ANEXO2_UA1 = "UA1-Anexo2.pdf";
 const MANUAL_MP1706_UA2 = "UA2-Manual.pdf";
 const PRES_MP1706_UA2 = "MP1706-UA2-Presentacion.pdf";
+const PRES_MP1706_UA4 = "https://drive.google.com/file/d/1ZVMgzLFrTcD3nBGtBDk3c_GL5cVplXmf/preview";
 const CRONOGRAMA_IMG = "CRONOGRAMA-CURSO.jpeg";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
@@ -236,7 +238,7 @@ function pintarModulo(){
         <div class="subpanel" id="${id}-s2"><b>📄 Sesión 2</b><br><br><a href="MP1706-UA3-S2-Ficha1.docx" download>📝 ➡️ Ficha 1 - Sesión 2</a><br><br><a href="MP1706-UA3-S2-Ficha2.docx" download>📝 ➡️ Ficha 2 - Sesión 2</a></div>`;
     } else if(m.codigo==="MP1706" && idx===3){
       manualHTML = `<div class="icono-grande">📘</div><b>Manual - Unidad 4</b><br><br><a href="1706-UA4-Manual.pdf" target="_blank">📘 ➡️ Pincha aquí para abrir el manual de la Unidad 4</a>`;
-      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación</b><br>Aquí va la presentación de esta unidad.`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 4</b><br><iframe class="visor-incrustado" src="${PRES_MP1706_UA4}" allow="autoplay"></iframe>`;
       fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 4</b><br>Pincha en cada sesión 👇
         <div class="subtabs">
           <button class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
