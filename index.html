@@ -116,6 +116,7 @@ const ANEXO2_UA1 = "UA1-Anexo2.pdf";
 const MANUAL_MP1706_UA2 = "UA2-Manual.pdf";
 const PRES_MP1706_UA2 = "MP1706-UA2-Presentacion.pdf";
 const PRES_MP1706_UA4 = "https://drive.google.com/file/d/1ZVMgzLFrTcD3nBGtBDk3c_GL5cVplXmf/preview";
+const PRES_MP1706_UA4_VER = "https://drive.google.com/file/d/1ZVMgzLFrTcD3nBGtBDk3c_GL5cVplXmf/view?usp=sharing";
 const CRONOGRAMA_IMG = "CRONOGRAMA-CURSO.jpeg";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
@@ -238,7 +239,7 @@ function pintarModulo(){
         <div class="subpanel" id="${id}-s2"><b>📄 Sesión 2</b><br><br><a href="MP1706-UA3-S2-Ficha1.docx" download>📝 ➡️ Ficha 1 - Sesión 2</a><br><br><a href="MP1706-UA3-S2-Ficha2.docx" download>📝 ➡️ Ficha 2 - Sesión 2</a></div>`;
     } else if(m.codigo==="MP1706" && idx===3){
       manualHTML = `<div class="icono-grande">📘</div><b>Manual - Unidad 4</b><br><br><a href="1706-UA4-Manual.pdf" target="_blank">📘 ➡️ Pincha aquí para abrir el manual de la Unidad 4</a>`;
-      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 4</b><br><iframe class="visor-incrustado" src="${PRES_MP1706_UA4}" allow="autoplay"></iframe>`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 4</b><br><iframe class="visor-incrustado" src="${PRES_MP1706_UA4}" allow="autoplay"></iframe><br><a href="${PRES_MP1706_UA4_VER}">🎨 ➡️ Abrir presentación en esta ventana</a>`;
       fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 4</b><br>Pincha en cada sesión 👇
         <div class="subtabs">
           <button class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
