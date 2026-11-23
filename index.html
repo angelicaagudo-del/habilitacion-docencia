@@ -73,7 +73,7 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
     <h2>SSC_C_017_5B</h2>
     <p>👩‍🏫 Habilitación para la Docencia<br>Escribe el código de acceso para entrar</p>
     <input type="text" id="input-codigo" placeholder="Escribe el código" autocomplete="off">
-    <button type="button" id="btn-entrar" onclick="comprobarCodigo()">➡️ Entrar</button>
+    <button type="button" id="btn-entrar">➡️ Entrar</button>
     <div id="mensaje-error">❌ Código incorrecto, inténtalo otra vez</div>
     <p style="font-size:12px;color:#999;margin-top:16px">Si no tienes el código, pídeselo a tu profesora Angélica</p>
   </div>
@@ -91,24 +91,6 @@ footer{text-align:center;padding:20px;color:#888;font-size:13px}
 <footer>🎨 Página principal con dibujos y colores</footer>
 <script>
 const CODIGO_CORRECTO = "SSC2026";
-function comprobarCodigo(){
-  const input = document.getElementById("input-codigo");
-  const valor = input ? input.value.trim() : "";
-  if(valor === CODIGO_CORRECTO){
-    document.getElementById("pantalla-codigo").style.display = "none";
-    try { sessionStorage.setItem("accesoSSC", "ok"); } catch(e) {}
-    pintarInicio();
-  } else {
-    document.getElementById("mensaje-error").style.display = "block";
-    if(input){
-      input.value = "";
-      input.focus();
-    }
-  }
-}
-document.getElementById("input-codigo").addEventListener("keypress", function(e){
-  if(e.key === "Enter"){ comprobarCodigo(); }
-});
 const ALUMNOS = [
   {nombre:"MARÍA", link:"https://drive.google.com/drive/folders/1xa46sfFhwnGt_tllEXhsVBMj2a_kkpOR"},
   {nombre:"LOURDES", link:"https://drive.google.com/drive/folders/1ggZLHk0mtrAbtAVf5TmcSoeOFWOBZ4m3"},
@@ -184,6 +166,7 @@ const MODULOS = [
 ];
 let moduloActivo = -1;
 const contenido = document.getElementById("contenido");
+
 function alternarCronograma(){
   const btn = document.getElementById("btn-cronograma");
   const panel = document.getElementById("panel-cronograma");
@@ -192,9 +175,10 @@ function alternarCronograma(){
     panel.classList.toggle("active");
   }
 }
+
 function pintarInicio(){
   let html = `<div class="barra-superior">
-    <button class="pestana-cronograma" id="btn-cronograma" onclick="alternarCronograma()">🗓️ Cronograma</button>
+    <button type="button" class="pestana-cronograma" id="btn-cronograma" onclick="alternarCronograma()">🗓️ Cronograma</button>
   </div>
   <div class="panel-cronograma" id="panel-cronograma">
     <h2>🗓️ Cronograma del Curso</h2>
@@ -213,9 +197,10 @@ function pintarInicio(){
     </div>`;
   });
   html += `</div>`;
-  contenido.innerHTML = html;
+  if(contenido) contenido.innerHTML = html;
   window.scrollTo(0,0);
 }
+
 function pintarModulo(){
   const m = MODULOS[moduloActivo];
   let html = `<a class="boton-volver" href="#" onclick="pintarInicio();return false;">⬅️ Volver a todos los módulos</a><div class="modulo-titulo"><h2>${m.icono}${m.codigo} - ${m.nombre}</h2><p>📁 ${m.uas.length} unidades - Pulsa en cada unidad para abrirla 👇</p></div>`;
@@ -226,4 +211,14 @@ function pintarModulo(){
     let presHTML = "";
     let fichasHTML = "";
     if(m.codigo==="MP1706" && idx===0){
-      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 1</b><br><br><a href="${MANUAL_MP1706_UA1}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br><a href="${ANEXO1_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 1</a><br><br><a href="${ANEXO2_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual - Unidad 1</b><br><br><a href="${MANUAL_MP1706_UA1}" target="_blank">📘 ➡️ Pincha aquí para abrir el manual</a><br><br><a href="${ANEXO1_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 1</a><br><br><a href="${ANEXO2_UA1}" target="_blank">📄 ➡️ Pincha aquí para abrir el Anexo 2</a>`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 1</b><br><br><a href="${PRES_MP1706_UA1}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación</a>`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 1</b><br>Pincha en cada sesión 👇
+        <div class="subtabs">
+          <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
+          <button type="button" onclick="mostrarSesion(event,'${id}','s2')">📄 Sesión 2</button>
+          <button type="button" onclick="mostrarSesion(event,'${id}','s3')">📄 Sesión 3</button>
+        </div>
+        <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="UA1-S1-Ficha1.docx" download>📝 ➡️ Ficha 1 - Sesión 1</a><br><br><a href="UA1-S1-Ficha2.docx" download>📝 ➡️ Ficha 2 - Sesión 1</a></div>
+        <div class="subpanel" id="${id}-s2"><b>📄 Sesión 2</b><br><br><a href="UA1-S2-Ficha1.docx" download>📝 ➡️ Ficha 1 - Sesión 2</a><br><br><a href="UA1-S2-Ficha2.docx" download>📝 ➡️ Ficha 2 - Sesión 2</a></div>
+        <div class="subpanel" id="${id}-s3"><b>📄 Sesión 3</b><br><br
