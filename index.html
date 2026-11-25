@@ -18,6 +18,10 @@ main{max-width:900px;margin:auto;padding:16px}
 .modulo-titulo{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:8px solid #2563eb}
 .modulo-titulo h2{margin:0;color:#1e40af;font-size:20px}
 .modulo-titulo p{margin:6px 0 0;color:#666;font-size:14px}
+.manual-modulo{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:8px solid #0284c7}
+.manual-modulo h3{margin:0 0 6px;color:#0369a1;font-size:17px}
+.manual-modulo p{margin:0 0 10px;color:#555;font-size:14px}
+.manual-modulo a{display:inline-block;background:#0284c7;color:white;padding:10px 16px;border-radius:20px;text-decoration:none;font-weight:bold}
 .barra-superior{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
 .pestana-cronograma{display:inline-flex;align-items:center;gap:8px;background:#dcfce7;color:#166534;border:2px solid #16a34a;padding:11px 18px;border-radius:20px;font-weight:bold;font-size:15px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.08)}
 .pestana-cronograma.active{background:#16a34a;color:white}
@@ -115,6 +119,10 @@ const FICHA_MP1706_UA4_S3_F1 = "MP1706-UA4-S3-Ficha1.docx";
 const PRES_MP1706_UA5 = "https://drive.google.com/file/d/1vrrwgqZ57uadpXJfTLbMMTsCA9toib7G/view?usp=sharing";
 const FICHA_MP1706_UA5_S1_F1 = "MP1706-UA5-S1-Ficha1.docx";
 const FICHA_MP1706_UA5_S1_F2 = "MP1706-UA5-S1-Ficha2.docx";
+const MANUAL_MP1707 = "MP1707/MP1707-Manual.pdf";
+const PRES_MP1707_UA1 = "MP1707/MP1707-UA1-Presentacion.pdf";
+const FICHA_MP1707_UA1_S1_F1 = "MP1707/MP1707-UA1-S1-Ficha1.docx";
+const FICHA_MP1707_UA1_S1_F2 = "MP1707/MP1707-UA1-S1-Ficha2.docx";
 const CRONOGRAMA_IMG = "CRONOGRAMA-CURSO.jpeg";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
@@ -130,7 +138,7 @@ const MODULOS = [
 ["Medios y recursos tecnológicos","💻 Recursos TIC, audiovisuales y digitales para el aula."],
 ["Utilización de materiales, medios técnicos y recursos audiovisuales","🎬 Uso práctico en el aula."],
 ["Evaluación de materiales, medios y recursos didácticos","✅ Cómo evaluar si el material funciona."]]},
-{codigo:"MP1707", nombre:"Orientación profesional", icono:"🧭", color:"c3", desc:"💼 Ayuda a buscar empleo - 6 unidades", uas:[
+{codigo:"MP1707", nombre:"Orientación profesional", icono:"🧭", color:"c3", desc:"💼 Ayuda a buscar empleo - 6 unidades", manualGeneral:MANUAL_MP1707, uas:[
 ["El Sistema de Formación Profesional y las oportunidades de desarrollo profesional","🌱 Oportunidades del sistema."],
 ["El mercado laboral y las oportunidades de empleo","💼 Conoce el mercado laboral."],
 ["Herramientas para la búsqueda activa de empleo","🔍 Herramientas para buscar empleo."],
@@ -210,6 +218,13 @@ function pintarModulo(){
   const m = MODULOS[moduloActivo];
   if(!contenido || !m) return;
   let html = `<a class="boton-volver" href="#" onclick="pintarInicio();return false;">⬅️ Volver a todos los módulos</a><div class="modulo-titulo"><h2>${m.icono} ${m.codigo} - ${m.nombre}</h2><p>📁 ${m.uas.length} unidades - Pulsa en cada unidad para abrirla 👇</p></div>`;
+  if(m.manualGeneral){
+    html += `<div class="manual-modulo">
+      <h3>📘 Manual general del módulo (${m.codigo})</h3>
+      <p>Manual didáctico completo aplicable a todas las unidades del módulo.</p>
+      <a href="${m.manualGeneral}" target="_blank">📘 ➡️ Abrir manual de ${m.codigo}</a>
+    </div>`;
+  }
   m.uas.forEach((ua, idx)=>{
     let id = m.codigo + "-" + idx;
     let icono = ICONOS[idx % ICONOS.length];
@@ -270,6 +285,14 @@ function pintarModulo(){
           <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
         </div>
         <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="${FICHA_MP1706_UA5_S1_F1}" download>📝 ➡️ Ficha 1 - Sesión 1 (Auditoría exprés)</a><br><br><a href="${FICHA_MP1706_UA5_S1_F2}" download>📝 ➡️ Ficha 2 - Sesión 1 (Trabajo en parejas)</a></div>`;
+    } else if(m.codigo==="MP1707" && idx===0){
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manual general de MP1707</b><br>El manual completo del módulo está disponible arriba, fuera de las unidades.<br><br><a href="${MANUAL_MP1707}" target="_blank">📘 ➡️ Abrir manual general de MP1707</a>`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 1</b><br><br><a href="${PRES_MP1707_UA1}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación de la Unidad 1</a>`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 1</b><br>Pincha en la sesión 👇
+        <div class="subtabs">
+          <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
+        </div>
+        <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="${FICHA_MP1707_UA1_S1_F1}" download>📝 ➡️ Ficha 1 - Sesión 1 (Individual)</a><br><br><a href="${FICHA_MP1707_UA1_S1_F2}" download>📝 ➡️ Ficha 2 - Sesión 1 (Parejas)</a></div>`;
     } else {
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual</b><br>Aquí va solo el manual de esta unidad.`;
       presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación</b><br>Aquí va solo la presentación de esta unidad.`;
