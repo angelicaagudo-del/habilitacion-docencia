@@ -123,6 +123,11 @@ const MANUAL_MP1707 = "MP1707/MP1707-Manual.pdf";
 const PRES_MP1707_UA1 = "https://drive.google.com/file/d/1r7itOI1-TIz5ziBsW1iL8rzvYvYUNp6Q/view?usp=sharing";
 const FICHA_MP1707_UA1_S1_F1 = "MP1707/MP1707-UA1-S1-Ficha1.docx";
 const FICHA_MP1707_UA1_S1_F2 = "MP1707/MP1707-UA1-S1-Ficha2.docx";
+const ANEXO1_MP1707_UA2 = "MP1707/Anexo I_Guia metodológica (UA2).docx";
+const ANEXO2_MP1707_UA2 = "MP1707/Anexo II_Guia metodológica (UA2).docx";
+const PRES_MP1707_UA2 = "MP1707/MP1707-UA2-Presentacion.pdf";
+const FICHA_MP1707_UA2_S1_F1 = "MP1707/MP1707-UA2-S1-Ficha1.docx";
+const FICHA_MP1707_UA2_S1_F2 = "MP1707/MP1707-UA2-S1-Ficha2.docx";
 const CRONOGRAMA_IMG = "CRONOGRAMA-CURSO.jpeg";
 const ICONOS = ["📚","✏️","💻","🎯","🧑‍🏫","🌟","📖","🎨"];
 const MODULOS = [
@@ -237,7 +242,7 @@ function pintarModulo(){
       fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 1</b><br>Pincha en cada sesión 👇
         <div class="subtabs">
           <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
-          <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s2')">📄 Sesión 2</button>
+          <button type="button" onclick="mostrarSesion(event,'${id}','s2')">📄 Sesión 2</button>
           <button type="button" onclick="mostrarSesion(event,'${id}','s3')">📄 Sesión 3</button>
         </div>
         <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="UA1-S1-Ficha1.docx" download>📝 ➡️ Ficha 1 - Sesión 1</a><br><br><a href="UA1-S1-Ficha2.docx" download>📝 ➡️ Ficha 2 - Sesión 1</a></div>
@@ -249,7 +254,7 @@ function pintarModulo(){
       fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 2</b><br>Pincha en cada sesión 👇
         <div class="subtabs">
           <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
-          <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s2')">📄 Sesión 2</button>
+          <button type="button" onclick="mostrarSesion(event,'${id}','s2')">📄 Sesión 2</button>
           <button type="button" onclick="mostrarSesion(event,'${id}','s3')">📄 Sesión 3</button>
         </div>
         <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="UA2-S1-Ficha1.docx" download>📝 ➡️ Ficha 1 - Sesión 1</a><br><br><a href="UA2-S1-Ficha2.docx" download>📝 ➡️ Ficha 2 - Sesión 1</a></div>
@@ -293,6 +298,14 @@ function pintarModulo(){
           <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
         </div>
         <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="${FICHA_MP1707_UA1_S1_F1}" download>📝 ➡️ Ficha 1 - Sesión 1 (Individual)</a><br><br><a href="${FICHA_MP1707_UA1_S1_F2}" download>📝 ➡️ Ficha 2 - Sesión 1 (Parejas)</a></div>`;
+    } else if(m.codigo==="MP1707" && idx===1){
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manuales y Anexos - Unidad 2</b><br><br><a href="${ANEXO1_MP1707_UA2}" download>📄 ➡️ Anexo I - Guía metodológica (UA2)</a><br><br><a href="${ANEXO2_MP1707_UA2}" download>📄 ➡️ Anexo II - Guía metodológica (UA2)</a>`;
+      presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 2</b><br><br><a href="${PRES_MP1707_UA2}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación de la Unidad 2</a>`;
+      fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 2</b><br>Pincha en la sesión 👇
+        <div class="subtabs">
+          <button type="button" class="active" onclick="mostrarSesion(event,'${id}','s1')">📄 Sesión 1</button>
+        </div>
+        <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="${FICHA_MP1707_UA2_S1_F1}" download>📝 ➡️ Ficha 1 - Sesión 1 (Individual)</a><br><br><a href="${FICHA_MP1707_UA2_S1_F2}" download>📝 ➡️ Ficha 2 - Sesión 1 (Parejas)</a></div>`;
     } else {
       manualHTML = `<div class="icono-grande">📘📚</div><b>Manual</b><br>Aquí va solo el manual de esta unidad.`;
       presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación</b><br>Aquí va solo la presentación de esta unidad.`;
