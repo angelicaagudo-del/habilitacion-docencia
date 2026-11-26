@@ -123,8 +123,8 @@ const MANUAL_MP1707 = "MP1707/MP1707-Manual.pdf";
 const PRES_MP1707_UA1 = "https://drive.google.com/file/d/1r7itOI1-TIz5ziBsW1iL8rzvYvYUNp6Q/view?usp=sharing";
 const FICHA_MP1707_UA1_S1_F1 = "MP1707/MP1707-UA1-S1-Ficha1.docx";
 const FICHA_MP1707_UA1_S1_F2 = "MP1707/MP1707-UA1-S1-Ficha2.docx";
-const ANEXO1_MP1707_UA2 = "MP1707/PON-AQUI-EL-NOMBRE-EXACTO-DEL-ANEXO1.docx";
-const ANEXO2_MP1707_UA2 = "MP1707/PON-AQUI-EL-NOMBRE-EXACTO-DEL-ANEXO2.docx";
+const ANEXO1_MP1707_UA2 = "MP1707/MP1707-UA2-Anexo1-Guia-Metodologica.docx";
+const ANEXO2_MP1707_UA2 = "MP1707/MP1707-UA2-Anexo2-Guia-Marca-Personal-BAE.docx";
 const PRES_MP1707_UA2 = "MP1707/MP1707-UA2-Presentacion.pdf";
 const FICHA_MP1707_UA2_S1_F1 = "MP1707/MP1707-UA2-S1-Ficha1.docx";
 const FICHA_MP1707_UA2_S1_F2 = "MP1707/MP1707-UA2-S1-Ficha2.docx";
@@ -299,7 +299,7 @@ function pintarModulo(){
         </div>
         <div class="subpanel active" id="${id}-s1"><b>📄 Sesión 1</b><br><br><a href="${FICHA_MP1707_UA1_S1_F1}" download>📝 ➡️ Ficha 1 - Sesión 1 (Individual)</a><br><br><a href="${FICHA_MP1707_UA1_S1_F2}" download>📝 ➡️ Ficha 2 - Sesión 1 (Parejas)</a></div>`;
     } else if(m.codigo==="MP1707" && idx===1){
-      manualHTML = `<div class="icono-grande">📘📚</div><b>Manuales y Anexos - Unidad 2</b><br><br><a href="${ANEXO1_MP1707_UA2}" download>📄 ➡️ Anexo I - Guía metodológica (UA2)</a><br><br><a href="${ANEXO2_MP1707_UA2}" download>📄 ➡️ Anexo II - Guía metodológica (UA2)</a>`;
+      manualHTML = `<div class="icono-grande">📘📚</div><b>Manuales y Anexos - Unidad 2</b><br><br><a href="${ANEXO1_MP1707_UA2}" download>📄 ➡️ Anexo I - Guía Metodológica (UA2)</a><br><br><a href="${ANEXO2_MP1707_UA2}" download>📄 ➡️ Anexo II - Guía Marca Personal BAE (UA2)</a>`;
       presHTML = `<div class="icono-grande">🎨🖥️</div><b>Presentación - Unidad 2</b><br><br><a href="${PRES_MP1707_UA2}" target="_blank">🎨 ➡️ Pincha aquí para abrir la presentación de la Unidad 2</a>`;
       fichasHTML = `<div class="icono-grande">📄📝</div><b>Fichas - Unidad 2</b><br>Pincha en la sesión 👇
         <div class="subtabs">
